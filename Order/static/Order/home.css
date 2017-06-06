@@ -1,0 +1,24 @@
+.category{
+    height: auto;
+}
+
+.float-box{
+    display: inline-block;
+}
+
+h2{
+    text-decoration: underline;
+    padding: 1%;
+}
+
+.row{
+    border-bottom:  1px solid #ccc;
+    padding: 1%;
+}
+
+.btn-arrow-right{
+    border-radius: 0px 4px 0px 0px;
+    border-left-color: transparent; /* hide left border */
+    border-bottom-color: transparent;
+
+}

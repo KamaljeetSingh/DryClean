@@ -1,0 +1,27 @@
+
+#item_bar {
+    border-bottom: 1px solid;
+    border-radius: 0;
+}
+
+
+#item_nav a{
+    color: black;
+}
+
+#item_nav a:hover{
+    color: gray;
+}
+
+.container .boxes{
+    display: inline-block;
+    border-style: solid;
+    border-color: #cccccc;
+    border-radius: 2%;
+    height: auto;
+    width: 12em;
+    text-align: center;
+    font-size: medium;
+    margin-right: 3%;
+    margin-bottom: 3%;
+}

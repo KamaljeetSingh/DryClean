@@ -1,0 +1,18 @@
+{% extends 'User/base.html' %}
+{% block title %}Signup{% endblock %}
+{% block body %}
+{% load widget_tweaks %}
+{% for field in form %}
+    <div class="tag{{ forloop.counter }}">
+    <div class="form-group" style="font-size: 20px;">
+        <label class="col-md-4 control-label">{{ field.label }}</label>
+        <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+        <span class="input-group-addon"></span>
+        <div>{{ field|add_class:"fff"}}</div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

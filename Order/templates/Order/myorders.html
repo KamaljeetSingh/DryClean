@@ -1,0 +1,24 @@
+{% include 'User/base.html' %}
+{% include 'Order/nav.html' %}
+<div class="container text-center" style="font-size: 18px;">
+<table class="table table-condensed text-left">
+    <thead>
+        <tr>
+            <th>Serial Number</th>
+            <th>Order Number</th>
+            <th>Order Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for i in orders %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{% url 'order:orderdisplay' i.order_info_id  %}">{{ i.order_info_id }}</a></td>
+        <td>{{ i.order_date }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+</div>

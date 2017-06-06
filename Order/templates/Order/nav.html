@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">DryClean</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'order:home' %}">Home</a></li>
+        <li><a href="{% url 'order:myorders' %}">My Orders</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <div class="dropdown" style="padding: 8px;">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: transparent; border: none;"><span class="glyphicon glyphicon-user"></span>
+                {{ name }} <span class="caret"></span></button>
+                    <ul class="dropdown-menu text-center">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="{% url 'order:logout' %} ">Logout</a></li>
+                    </ul>
+          </div>
+
+      </ul>
+    </div>
+  </div>
+  </nav>

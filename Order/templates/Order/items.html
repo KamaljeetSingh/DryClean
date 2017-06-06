@@ -1,0 +1,100 @@
+{% extends 'User/base.html' %}
+
+{% block title %} DryClean | Items {% endblock %}
+
+{% block head %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Order/item_style.css' %}">
+    <script type="text/javascript" src="{% static 'Order/to_place.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    {% include 'Order/nav.html' %}
+    {% include 'Order/schedule.html' %}
+    <div class="choose" id="choose">
+    <div class="row text-center">
+    <h2>Choose Your Items</h2>
+    </div>
+    <nav class="navbar navbar-default col-sm-offset-1 col-sm-10" id="item_nav">
+    <div class="container-fluid" id="item_bar">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myItembar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><b>Items</b></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myItembar">
+      <ul class="nav navbar-nav">
+        {% for c in cat_list %}
+            <script type="text/javascript">
+            $(document).ready(function(){
+                $('#type{{ cat_list.0 }}').show();
+                window.xp = "{{ cat_list.0 }}";
+                $('#item{{ c }}').click(function(){
+                //alert(window.x);
+                $('#type'+window.xp).hide();
+                $('#type{{ c }}').show();
+                window.xp = "{{ c }}";
+            });
+            });
+            </script>
+            <li><a href="#" id="item{{ c }}">{{ c }}</a></li>
+
+        {% endfor %}
+      </ul>
+          </div>
+    </div>
+  </nav>
+
+{% for key,value in item_dict.items %}
+        {% if key in cat_list %}
+            <div class="container" id="type{{ key }}" style="display: none;">
+                {% for x in value %}
+                <script type="text/javascript">
+                $(document).ready(function(){
+                        window.obj={};                        //global variable
+                       $(".press{{ x.id }}").click(function(){
+                           var but_val = $(this).val();
+                           obj['{{ x.id }}']=0;
+                           var value;
+                           if(but_val=="plus") {
+                               value = parseInt($('#quant{{ x.id }}').val());
+                               value = value + 1;
+                           }
+                           else{
+                               value = parseInt($('#quant{{ x.id }}').val());
+                               if(value>0)
+                               value = value - 1;
+                           }
+                           $('#quant{{ x.id }}').val(value);
+                           if(value>0)
+                                obj['{{ x.id }}'] = value;
+                           else
+                                delete obj['{{ x.id }}'];
+                           console.log(obj);
+                        });
+                        });
+                    </script>
+
+                <div class="boxes col-sm-offset-1 col-sm-10 col-xs-offset-2 col-xs-10">
+                <h4><b>{{ x.type }}</b></h4>
+                <p style="font-size: small; color: lightslategrey;">Cost Per Piece: Rs. {{ x.rate }}</p>
+
+                <div class="box2">
+                <button type="button" class="btn btn-default press{{ x.id }}" value="minus"><span class="glyphicon glyphicon-minus-sign"></span></button>
+                <input type="text" id="quant{{ x.id }}" value="0" style="width: 20%; text-align: center;" disabled>
+                <button type="button" class="btn btn-default press{{ x.id }}" value="plus"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                </div>
+
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+{% endfor %}
+
+    <button type="submit" id="next1" href="#" class="col-sm-offset-6 col-xs-offset-6">Next</button>
+    </div>
+
+{% endblock %}

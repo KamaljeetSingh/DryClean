@@ -1,0 +1,44 @@
+{% extends 'User/base.html' %}
+
+{% block title %}DryClean | Home{% endblock %}
+
+{% block head %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Order/home.css' %}">
+    <script type="text/javascript" src="{% static 'Order/check_box.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="jumbotron text-center" style="background-color: lightcoral; padding:0 0 5% 0;  width: auto;">
+  {% include 'Order/nav.html' %}
+  <h1>Get Your Clothes Clean</h1>
+  <p>Place your order for picking your laundry from your doorstep and get a hassle-free delivery with full satisfaction.</p>
+</div>
+
+<div class="category col-sm-12">
+    <div class="container text-center">
+    <h2>Select Category</h2>
+    <form action="{% url 'order:items' %}" method="post">
+    {% csrf_token %}
+            <div id="boom">
+            {% for c in cat %}
+                <div class="row">
+                    <div class="col-sm-6">{{ c.category_name }}</div>
+                    <div class="col-sm-6"><label class="btn btn-default">
+				        <input type="checkbox" class="check" name="options" value={{ c.category_name }} autocomplete="off">
+                        </label>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+        <div class="row">
+            <input type="submit" id="proceed" value="Proceed">
+        </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

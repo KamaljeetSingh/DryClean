@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'Order/pickup.js' %}"></script>
+<script type="text/javascript" src="{% static 'Order/to_delivery.js' %}"></script>
+<script type="text/javascript" src="{% static 'Order/radios_schedule.js' %}"></script>
+
+{% include 'Order/delivery.html'%}
+
+
+<div class="container schedule" id="schedule" style="display: none; text-align: center;">
+    <div style="border-bottom: thin solid; margin-bottom: 2%;"><h2>Pickup Time</h2></div>
+
+    <div class="form-group text-center">
+    <label for="usr">Date: </label>
+    <input type="date" class="form-control" id="pickup_date" min="{% now "Y-m-d" %}" style="width: 20%; display: inline;">
+    </div>
+
+    <div class="form-group">
+    <label for="sel1">Time:</label>
+    <select class="form-control" id="pickup_time" style="display: inline; width: 20%;">
+    <option value="">select time</option>
+    <option value="Morning 7am - 9am">Morning 7am - 9am</option>
+    <option value="Noon 2pm - 4pm">Noon 2pm - 4pm</option>
+    <option value="Evening 5pm - 9pm">Evening 5pm - 9pm</option>
+    </select>
+    </div>
+    <br>
+    <div style="border-bottom: thin solid; margin-bottom: 2%;"><h2>Pickup Location</h2></div>
+    <div class="form-group text-center">
+    {% if flag == 1 %}
+    <input type="radio" name="add_select1" id="add_select1">Saved Address
+        <div class="saved_add">
+            <select class="form-control" id="pickup_saved" style="display: inline; width: 20%;">
+            <option value="">select address</option>
+            {% for x in orders %}
+            <option value="{{ x.order_info_id }}">{{ x.order_info_id.pickup_add }}</option><br>
+            {% endfor %}
+            </select>
+        </div>
+    {% endif %}
+    </div>
+
+    <input type="radio" name="add_select2" id="add_select2">Enter New Address
+    <div class="new_add">
+
+    <div class="form-group text-center">
+    <label for="usr">Address: </label>
+    <input type="text" class="form-control" id="pickup_loc1" style="width: 20%; display: inline;">
+    </div>
+
+    <div class="form-group text-center">
+    <label for="usr">City: </label>
+    <input type="text" class="form-control" id="pickup_loc2" style="width: 20%; display: inline;">
+    </div>
+
+    <div class="form-group text-center">
+    <label for="usr">Pincode: </label>
+    <input type="text" class="form-control" id="pickup_loc3" style="width: 20%; display: inline;">
+    </div>
+
+    </div>
+
+    <br>
+    <button type="submit" id="back">Back</button>
+    <button type="submit" id="save_pick">Save</button>
+    <button type="submit" id="next2">Next</button>
+
+</div>

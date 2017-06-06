@@ -1,0 +1,81 @@
+{% extends 'user/base.html' %}
+{% block body %}
+<div class="container text-center">
+<h4>Order Details</h4>
+
+<table class="table table-condensed text-left">
+    <tbody>
+        <tr>
+            <td><b>Order Ref No.</b></td>
+            <td>{{ order_info.id }}</td>
+        </tr>
+        <tr>
+            <td><b>Order Date</b></td>
+            <td>{{ date }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-condensed text-left">
+    <thead>
+    <tr>
+        <th>
+            Laundry Items
+        </th>
+    </tr>
+    </thead>
+
+    <thead>
+      <tr>
+        <th>Items</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in items %}
+      <tr>
+        <td>{{ x.items.type }}</td>
+        <td>{{ x.quantity }}</td>
+      </tr>
+    {% endfor %}
+        <tr>
+        <td><b>Total Fare</b></td>
+        <td><b>Rs. {{ order_info.total_fare }}</b></td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<table class="table table-condensed text-left">
+    <thead>
+    <tr>
+        <th>
+            Location Details
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Pickup Location</td>
+        <td>{{ order_info.pickup_add }} {{ order_info.pickup_city }} {{ order_info.pickup_pin }}</td>
+    </tr>
+    <tr>
+        <td>Pickup Date-Time</td>
+        <td>{{ order_info.pickup_date }} {{ order_info.pickup_time }} </td>
+    </tr>
+    <tr>
+        <td>Delivery Location</td>
+        <td>{{ order_info.del_add }} {{ order_info.del_city }} {{ order_info.del_pin }}</td>
+    </tr>
+    <tr>
+        <td>Delivery Date-Time</td>
+        <td>{{ order_info.del_date }} {{ order_info.del_time }} </td>
+    </tr>
+    <tr>
+        <td>Deliver To</td>
+        <td>{{ order_info.del_option }} </td>
+    </tr>
+   </tbody>
+</table>
+<a href="{% url 'order:home' %}">Go To Home</a>
+</div>
+{% endblock %}
